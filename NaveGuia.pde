@@ -23,7 +23,7 @@ class NaveGuia
     ancho = an;
     alto = al;
     imagen = img;
-    frecuencia = 3;
+    frecuencia = frec;
     contador = 0; 
   }
   
@@ -31,6 +31,8 @@ class NaveGuia
   {
     if(imagen == null)
       rect(posicionX,posicionY,ancho,alto);
+    else
+      image(imagen,posicionX,posicionY);
     
     contador++;
     if(contador >= frecuencia)
@@ -49,6 +51,6 @@ class NaveGuia
   
   void dispara()
   {
-    balas.add(new Bala(posicionX + ancho, posicionY + alto / 2));
+    balas.add(new Bala(bala.width / 2, bala, posicionX + ancho, posicionY + alto / 2));
   }
 }

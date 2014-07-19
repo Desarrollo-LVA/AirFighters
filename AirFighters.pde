@@ -1,10 +1,16 @@
 NaveGuia naveGuia;
+PImage nave,bala;
 static ArrayList<Bala> balas;
+
 
 void setup()
 {
+  //size(800,600);
   background(0,255,100);
-  naveGuia = new NaveGuia();
+  
+  nave = loadImage("nave.png");
+  bala = loadImage("bala.png");
+  naveGuia = new NaveGuia(nave.width,nave.height,nave,10);
   balas = new ArrayList();
 }
 

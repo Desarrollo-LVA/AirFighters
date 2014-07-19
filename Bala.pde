@@ -12,11 +12,16 @@ class Bala
   
   Bala(float velocidad, int origenX, int origenY)
   {
+    this(velocidad,null,origenX,origenY);
+    ancho = alto = 30;        
+  }
+  
+  Bala(float velocidad,PImage img, int origenX, int origenY)
+  {
     vel = velocidad;
     this.origenX = origenX;
-    this.origenY = origenY;
-    ancho = alto = 30;
-    imagen = null;    
+    this.origenY = origenY;    
+    imagen = img;
   }
   
   void pintar()
@@ -24,5 +29,7 @@ class Bala
     origenX += vel;
     if(imagen == null)
       ellipse((int)origenX, (int)origenY, ancho, alto);
+     else
+       image(bala,(int)origenX,origenY);
   }
 }

@@ -3,7 +3,7 @@ class Bala
   float vel;
   float origenX, origenY;
   int ancho, alto;
-  PImage imagen;
+  PImage imagen;  
   
   Bala(int x,int y)
   {

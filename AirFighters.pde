@@ -1,28 +1,35 @@
 NaveGuia naveGuia;
-PImage nave,bala,estrellaAzul,estrellaAmarilla;
+PImage nave,bala,estrellaAzul,estrellaAmarilla,enemigo;
 static ArrayList<Bala> balas;
 
 static ArrayList<Estrella> estrellas;
-int conEstrellas, ciclosEstrellas = 5, velEstrellas = 5, grosorEstrella = 20;;
+int conEstrellas, ciclosEstrellas = 5, velEstrellas = 5, grosorEstrella = 20;
+
+static ArrayList<Enemigo> enemigos;
+int conEnemigos,ritmo = 80;
 void setup()
 {
-  size(800,600);
+  //size(800,600);
   background(0,255,100);
   
   nave = loadImage("nave.png");
   bala = loadImage("bala.png");
   estrellaAzul = loadImage("azul.png");
   estrellaAmarilla = loadImage("amarillo.png");
+  enemigo = loadImage("enemigo.png");
   naveGuia = new NaveGuia(nave.width,nave.height,nave,10);
   balas = new ArrayList();
   estrellas = new ArrayList(10);
+  enemigos = new ArrayList();
   conEstrellas = 0;
+  conEnemigos = 0;
 }
 
 void draw()
 {
   fondo();
   naveGuia.traza();
+  pintarEnemigos();
   pintarBalas();
 }
 
@@ -42,6 +49,27 @@ void pintarBalas()
       temp.add(b);
   }  
   balas = temp;
+}
+
+void pintarEnemigos()
+{
+  ArrayList temp = new ArrayList<Enemigo>();
+  conEnemigos ++;
+  for(int i = 0; i < enemigos.size();i ++)
+  {
+    Enemigo e = (Enemigo)enemigos.get(i);
+    e.pintar();
+    if(e.x > -e.ancho)
+      temp.add(e);
+  }
+  
+  if(conEnemigos ==ritmo)
+  {
+    temp.add(new Enemigo(enemigo));
+    conEnemigos = 0;
+  }
+  
+  enemigos = temp;
 }
 
 void fondo()
